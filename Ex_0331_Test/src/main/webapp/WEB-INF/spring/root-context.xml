@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- PersonVO p1 = new PersonVO(); -->
+	<bean id="p1" class="vo.PersonVO">
+		<!-- 스프링빈을 통해 PersonVO 객체의 생성자를 호출 -->
+		<!-- p1객체의 setName()을 통해 홍길동 이라는 값을 넣어주는 구조이므로
+			 PersonVO에 setter가 없으면 오류 발생 -->
+		<!-- p1.setName("홍길동"); -->
+		<property name="name" value="홍길동" />
+		<!-- p1.setAge(20); -->
+		<property name="age" value="20" />
+		<!-- p1.setTel("010-1111-2222"); -->
+		<property name="tel" value="010-1111-2222"/>
+		
+		<!-- 위와 같이 setter를 통해 값을 넣어주는 구조를
+			 si(setter injection) 이라고 한다. -->
+	</bean>
+	
+	<bean id="p2" class="vo.PersonVO">
+		<!-- PersonVO p2 = new PersonVO("박길동", 30, "010-3333-3333"); -->
+		<constructor-arg value="박길동"/>
+		<constructor-arg value="30"/>
+		<constructor-arg value="010-3333-3333"/> 
+		
+		<!-- 위와 같이 생성자를 통해 값을 넣어주는 구조를
+			 ci(constructor injection) 이라고 한다. -->
+	</bean>
+	
+		
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,29 @@
+1. dao패키지에 BoardDAO 인터페이스 생성
+2. dao패키지에 BoardDAOImpl 클래스 생성 --> BoardDAO 구현
+3. service에서 dao를 불러오고 controller에서 service를 불러와서 DB에 연결
+(원래는 servlet에서 DAO를 불러와서 사용했었다.)
+
+4. BoardService 인터페이스와 구현하는 클래스 BoardServiceImpl 생성
+	DAO --> BoardDAOImp, MemberDAOImpl
+	ServiceImp --> BoardDAOImpl dao1; MemberDAOImp dao2;
+
+	Controller
+	ServiceImp service;
+	service.dao1.selectList();
+	service.dao2.selectList();
+
+5. root-context.xml로 가서 객체 생성
+	<!-- BoardDAOImpl dao = new BoardDAOImpl(); -->
+	<bean id="dao" class="dao.BoardDAOImpl">
+		
+	</bean>
+	
+	<!-- BoardServiceImpl serviceBean = new BoardServiceImpl(dao); -->
+	<bean id="serviceBean" class="service.BoardServiceImpl">
+		<constructor-arg ref="dao"/>
+	</bean>
+
+6. controller 패키지에 BoardController 클래스 생성
+7. servlet-context.xml에서 controller 하위 컨트롤러도 실행한다고 선언해야 한다.
+8. Controller에서 @RequestMapping을 통해 메서드 단위로 servlet 역할을 수행할 수 있다.
+  --> 메서드의 반환형은 거의 String이다.
