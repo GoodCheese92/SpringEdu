@@ -1,0 +1,33 @@
+1. ParamController 생성
+ - path 설정
+ - 기본 mapping 설정 --> insert_form.do
+2. servlet-context.xml
+ - 알아서 확장자 붙여주는 부분 주석 처리
+3. insert_form.jsp 파일 작성
+ - form 태그 만들어서 파라미터 insert1.do에게 넘겨주기
+4. ParamController에서 작업
+ - RequestMapping에서 메서드의 파라미터를 통해 넘어온 파라미터들을 받을 수 있다.
+ - Request.getParamter 필요 X
+ - vo에 정보를 담아서 바인딩 후 insert_result.jsp로 넘겨줌
+5. insert_result.jsp에서 EL로 잘 넘어오는지 확인
+6. 파라미터를 주고 받을 때 method가 post이면 한글이 깨짐
+ - web.xml에서 설정, 한번만 설정하면 servlet마다 설정 했던 것을 한번에 해결
+<filter>
+	<filter-name>encodingFilter</filter-name>
+	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>	
+	<init-param>
+		<param-name>encoding</param-name>			
+		<param-value>utf-8</param-value>
+	</init-param>
+</filter>
+
+<filter-mapping>
+	<filter-name>encodingFilter</filter-name>
+	<url-pattern>*.do</url-pattern>
+</filter-mapping>
+
+7. 객체로 파라미터 주고 받는 법
+ - insert_form.jsp에서 객체로 전송(send2()) 작성
+ - ParamController에서 insert2() 매핑 작성
+ - 메서드의 파라미터로 PersonVO로 받으면 알아서 set 해준다.
+ - 다만 변수명이 동일해야 한다.

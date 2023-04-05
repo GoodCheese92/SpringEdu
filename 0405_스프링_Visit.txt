@@ -1,0 +1,18 @@
+1. pom.xml을 가져다가 쓰면 Overview로 들어가서 Artifact Id와 Name을 해당 패키지와 프로젝트에 맞게 수정해준다.
+2. web.xml을 가져온다.
+3. resources에 있는 폴더들 가져온다.
+ 1) db.properties는 수정할 필요 X
+ 2) mapper -> visit.xml로 이름 변경
+ 3) mybatis-config.xml에서 맵퍼 참조 및 별칭 수정
+ 4) context-1-datasource.xml 수정 X
+ 5) context-2-mybatis.xml 수정 X
+ 6) context-3-dao.xml 수정
+ 7) servlet-context.xml 수정
+4. 스프링 프로젝트 기본 접근 순서
+ 1) vo 생성
+ 2) dao 클래스 생성 및 bean 객체 생성
+ 3) dao에서 참조할 mapper 정의
+ 4) Controller 생성 및 servlet-context.xml에서 dao 참조
+ 5) Controller에서 호출된 매핑을 통해 메서드를 실행
+  --> 바인딩, 포워딩 실행
+ 6) 포워딩된 jsp에서 결과처리
