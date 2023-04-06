@@ -27,7 +27,9 @@
 		</script>
 	</head>
 	<body>
-		<form>
+		<!-- 파일 전송시 form태그가 반드시 가져야 할 두 가지의 속성
+			 method="post" enctype="multipart/form-data" -->
+		<form method="post" enctype="multipart/form-data">
 			<table border="1" align="center">
 				<caption>새 글 쓰기</caption>
 				<tr>
@@ -43,6 +45,10 @@
 				<tr>
 					<th>비밀번호</th>
 					<td><input type="password" name="pwd" /></td>
+				</tr>
+				<tr>
+					<th>첨부파일</th>
+					<td><input type="file" name="photo" /></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">

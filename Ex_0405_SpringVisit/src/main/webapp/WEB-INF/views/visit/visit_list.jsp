@@ -8,6 +8,10 @@
 		<title>visit_list.jsp</title>
 		<!-- artifact로 접근해서 resources 폴더로 접근한다. -->
 		<link rel="stylesheet" href="/visit/resources/css/visit.css">
+		<!-- <style>
+			img{display: block;
+				margin:0px auto;}
+		</style> -->
 		<!-- Ajax사용을 위한 js파일 -->
 		<script src="/visit/resources/js/httpRequest.js"></script>
 		<script type="text/javascript">
@@ -44,6 +48,22 @@
 					location.href = "visit_list.do";
 				}
 			} // end of resFn()
+			
+			function modify(f){
+				let pwd = f.pwd.value.trim(); // 원본 비밀번호
+				let c_pwd = f.c_pwd.value.trim(); // 입력한 비밀번호
+				
+				if( pwd != c_pwd ){
+					alert("비밀번호 불일치");
+					return;
+				}
+				
+				f.action = "visit_modify_form.do";
+				f.method = "post";
+				
+				// visit_modify_form.do?idx=10&pwd=1111&c_pwd=1111
+				f.submit();
+			} // end of modify
 		</script>
 	</head>
 	<body>
@@ -55,7 +75,13 @@
 			
 		<c:forEach var="vo" items="${ visit_list }">
 			<div class="visit_box">
-				<div class="type_content"><pre>${ vo.content }</pre></div>
+				<div class="type_content"><pre>${ vo.content }</pre><br>
+					<!-- 첨부된 파일이 있는 경우에만 img태그를 사용 -->
+					<c:if test="${vo.filename ne 'no_file'}">
+						<img src="/visit/resources/upload/${vo.filename}" width="330px" height="200px" />					
+					</c:if>
+				</div>
+				
 				<div class="type_name">${ vo.name }(${ vo.ip })</div>
 				<div class="type_regidate">작성일 : ${ vo.regidate }</div>
 				<div>

@@ -31,4 +31,40 @@ public class VisitDAO {
 		return res;
 	} // end of delete()
 	
+	// idx에 해당하는 게시글 한 건 조회
+	public VisitVO selectOne(int idx) {
+		VisitVO vo = sqlSession.selectOne("v.visit_one", idx);
+		return vo;
+	} // end of selectOne()
+	
+	// 게시글 수정
+	public int update(VisitVO vo) {
+		int res = sqlSession.update("v.visit_update", vo);
+		return res;
+	} // end of update()
+	
 } // end of class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
